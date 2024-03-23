@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= locals.description %>">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title><%= locals.title %></title>
+    <script type="text/javascript" src="/javascript/script.js" defer></script>
+</head>
+<body>
+    <%- include('../partials/search.ejs') %>
+    <!-- fetch the content of index.ejs -->
+    <div class="container">
+        <!-- header -->
+        <%- include('../partials/header.ejs') %>
+        
+        <!-- body gets the current routes template views depending on what the user clicks -->
+        <main class="main">
+            <%- body %>
+        </main>
+        
+        <!-- footer -->
+        <%- include('../partials/footer.ejs') %>
+    </div>
+    
+</body>
+</html>
