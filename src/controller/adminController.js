@@ -10,6 +10,11 @@ class AdminController extends Dao {
         description: "Simple Blog created with Nodejs, Express & MongoDB"
     };
 
+    /**
+     * Renders the admin page.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     async renderAdminPage(req, res) {
         res.render("admin/index.ejs", {
             locals: AdminController.locals,
@@ -18,6 +23,11 @@ class AdminController extends Dao {
         });
     }
 
+    /**
+     * Checks login credentials and issues JWT token if valid.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     checkLogin = async (req, res) => {
         try {
             const { username, password } = req.body;
@@ -50,6 +60,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Registers a new admin account.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     registerAdminAccount = async (req, res) => {
         try {
             const { username, password } = req.body;
@@ -72,6 +87,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Renders the dashboard view.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     dashBoardView = async (req, res) => {
         const data = await this.fetchDashBoardDetails();
         
@@ -84,6 +104,11 @@ class AdminController extends Dao {
         } 
     }
 
+    /**
+     * Fetches the data for adding a new post.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     getPost = async (req, res) => {
         try {
             const data = await this.fetchDashBoardDetails();
@@ -102,6 +127,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Adds a new post.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     addPost = async (req, res) => {
         try {
             const isTrue = await this.createNewPost(req.body);
@@ -117,6 +147,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Fetches blog data by ID.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     fetchBlogById = async (req, res) => {
         const data = await this.fetchUserById(req.params.id);
 
@@ -130,6 +165,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Updates a post.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     updatePost = async (req, res) => {
         try {
             const id = req.params.id;
@@ -145,6 +185,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Deletes a post.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     deletePost = async (req, res) => {
         const isDeleted = await this.deletePostFromDb(req.params.id);
 
@@ -153,6 +198,11 @@ class AdminController extends Dao {
         }
     }
 
+    /**
+     * Logs out the user by clearing the token cookie.
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     */
     logout = async (req, res) => {
         res.clearCookie("token");
         // res.json({ message: "Logout Successful" });

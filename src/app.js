@@ -49,8 +49,6 @@ app.set("layout", path.join(rootDirectory, "/src/views/layouts/main.ejs"));
 app.set("view engine", "ejs");
 app.set("views", path.join(rootDirectory, "/src/views"));
 
-
-
 // global variable and middleware for isActiveRoute
 app.locals.isActiveRoute = isActiveRoute;
 
